@@ -245,14 +245,14 @@ function Community() {
     <section className="bg-[#203746] px-6 py-20 text-white">
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <h2 className="text-5xl leading-tight md:text-5xl">
+          <h2 className="text-4xl text-center leading-tight md:text-5xl">
             Not just a Summit,
             <br />
             A Community.
             <br />
           </h2>
 
-          <p className="mt-6 max-w-sm text-md leading-7 text-white/90">
+          <p className="mt-6 text-md text-center leading-7 text-white/90">
             CEOs, Authors, Leaders all in one room, all focused on growth. Join
             our summit to be a part of the community that cares about your
             learning and pushes you to become a better version of yourself.

@@ -79,70 +79,96 @@ export default function SpeakerHighlightSlider() {
     );
   };
 
-  return (
-    <section className="relative bg-[#f4eadb] px-6 py-20">
-      <button
-        type="button"
-        onClick={goPrevious}
-        aria-label="Previous speaker"
-        className="absolute left-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[#203746] text-2xl font-bold text-[#f4eadb] shadow-md transition hover:bg-[#d4a02f] hover:text-[#203746] md:left-8"
-      >
-        ‹
-      </button>
+return (
+  <section className="relative bg-[#f4eadb] px-6 py-16 md:py-20">
+    <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.9fr_1.1fr] md:gap-12">
+      <div className="relative h-[380px] border-4 border-[#203746] md:h-[460px]">
+        <Image
+          src={activeSpeaker.image}
+          alt={activeSpeaker.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 520px"
+          className="object-cover"
+          priority={activeIndex === 0}
+        />
+      </div>
 
-      <button
-        type="button"
-        onClick={goNext}
-        aria-label="Next speaker"
-        className="absolute right-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[#203746] text-2xl font-bold text-[#f4eadb] shadow-md transition hover:bg-[#d4a02f] hover:text-[#203746] md:right-8"
-      >
-        ›
-      </button>
+      <div className="flex flex-col justify-center">
+        {/* Mobile arrows */}
+        <div className="mb-5 flex items-center justify-between md:hidden">
+          <button
+            type="button"
+            onClick={goPrevious}
+            aria-label="Previous speaker"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#203746] text-2xl font-bold text-[#f4eadb] shadow-md transition hover:bg-[#d4a02f] hover:text-[#203746]"
+          >
+            ‹
+          </button>
 
-      <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[0.9fr_1.1fr]">
-        <div className="relative h-[380px] border-4 border-[#203746] md:h-[460px]">
-          <Image
-            src={activeSpeaker.image}
-            alt={activeSpeaker.name}
-            fill
-            sizes="(max-width: 768px) 100vw, 520px"
-            className="object-cover"
-            priority={activeIndex === 0}
-          />
-        </div>
-
-        <div className="flex flex-col justify-center">
-          <h2 className="text-4xl font-bold leading-tight text-[#203746]">
-            {activeSpeaker.name}
-          </h2>
-
-          <p className="mt-2 text-xs font-bold uppercase tracking-wide text-[#203746]/70">
-            {activeSpeaker.role}
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#203746]/60">
+            Speaker {activeIndex + 1} / {speakerSlides.length}
           </p>
 
-          <div className="mt-5 space-y-5 text-[14px] leading-7 text-[#203746] md:text-[15px]">
-            {activeSpeaker.description.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
-          </div>
+          <button
+            type="button"
+            onClick={goNext}
+            aria-label="Next speaker"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#203746] text-2xl font-bold text-[#f4eadb] shadow-md transition hover:bg-[#d4a02f] hover:text-[#203746]"
+          >
+            ›
+          </button>
+        </div>
 
-          <div className="mt-8 flex gap-2">
-            {speakerSlides.map((speaker, index) => (
-              <button
-                key={`${speaker.name}-${index}`}
-                type="button"
-                onClick={() => setActiveIndex(index)}
-                aria-label={`View ${speaker.name}`}
-                className={`h-3 w-3 rounded-full transition ${
-                  activeIndex === index
-                    ? "bg-[#203746]"
-                    : "bg-[#203746]/30 hover:bg-[#d4a02f]"
-                }`}
-              />
-            ))}
-          </div>
+        <h2 className="text-4xl font-bold leading-tight text-[#203746] md:text-5xl">
+          {activeSpeaker.name}
+        </h2>
+
+        <p className="mt-2 text-xs font-bold uppercase tracking-wide text-[#203746]/70">
+          {activeSpeaker.role}
+        </p>
+
+        <div className="mt-5 space-y-5 text-[14px] leading-7 text-[#203746] md:text-[15px]">
+          {activeSpeaker.description.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
+
+        <div className="mt-8 flex gap-2">
+          {speakerSlides.map((speaker, index) => (
+            <button
+              key={`${speaker.name}-${index}`}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              aria-label={`View ${speaker.name}`}
+              className={`h-3 w-3 rounded-full transition ${
+                activeIndex === index
+                  ? "bg-[#203746]"
+                  : "bg-[#203746]/30 hover:bg-[#d4a02f]"
+              }`}
+            />
+          ))}
         </div>
       </div>
-    </section>
-  );
+    </div>
+
+    {/* Desktop arrows only */}
+    <button
+      type="button"
+      onClick={goPrevious}
+      aria-label="Previous speaker"
+      className="absolute left-3 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[#203746] text-2xl font-bold text-[#f4eadb] shadow-md transition hover:bg-[#d4a02f] hover:text-[#203746] md:left-8 md:flex"
+    >
+      ‹
+    </button>
+
+    <button
+      type="button"
+      onClick={goNext}
+      aria-label="Next speaker"
+      className="absolute right-3 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[#203746] text-2xl font-bold text-[#f4eadb] shadow-md transition hover:bg-[#d4a02f] hover:text-[#203746] md:right-8 md:flex"
+    >
+      ›
+    </button>
+  </section>
+);
 }
