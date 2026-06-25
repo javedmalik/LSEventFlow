@@ -309,7 +309,7 @@ function Sponsors() {
     {
       src: "/images/sponsors/our-brand-03.png",
       alt: "Harshu",
-      url: "https://www.harshuglobal.com/",
+      url: "https://harshuglobal.in/",
       className: "max-h-[105px] md:max-h-[125px]",
     },
     {
