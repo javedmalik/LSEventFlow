@@ -25,11 +25,9 @@ const communityImages = [
   "/images/community-1.jpg",
   "/images/pankaj_community.png",
   "/images/community-2.jpg",
-  
+
   "/images/community-4.jpg",
 ];
-
-
 
 export default function Home() {
   return (
@@ -57,11 +55,11 @@ function Hero() {
           width={220}
           height={80}
           priority
-          className="mx-auto mb-14 h-auto w-[210px] object-contain"
+          className="mx-auto mt-10 h-auto w-[210px] object-contain"
           style={{ width: "210px", height: "auto" }}
         />
 
-        <h1 className="text-[42px] font-semibold leading-[1.05] text-[#203746] md:text-[82px]">
+        <h1 className="text-[32px] font-semibold leading-[1.05] text-[#203746] md:text-[82px]">
           Business Needs Inc.
           <br />
           Leadership Summit 2026
@@ -75,12 +73,12 @@ function Hero() {
             See Schedule
           </a>
 
-          <a
+          {/* <a
             href="#about"
             className="bg-[#203746] px-10 py-4 text-[11px] font-semibold uppercase tracking-widest text-white md:px-12"
           >
             Learn More
-          </a>
+          </a> */}
         </div>
       </div>
     </section>
@@ -134,23 +132,34 @@ function About() {
               We believe that when leaders come together to share their
               expertise, we can make a lasting impact on others&apos; growth.
               Whether you are a student, working professional, or a leader
-              yourself, there is something for everyone to learn. Get ready to delve into a variety of topics like daling with faliure, AI advanements, and other leadership techniques.
-              We emphasize professional and personal growth; our aim with this
-              summit is for you to leave with a fresh perspective and a new
-              sense of motivation with a new array of connections for you to lean on. so take a seat and get ready for a day of learning and connection.
-
+              yourself, there is something for everyone to learn. Get ready to
+              delve into a variety of topics like daling with faliure, AI
+              advanements, and other leadership techniques. We emphasize
+              professional and personal growth; our aim with this summit is for
+              you to leave with a fresh perspective and a new sense of
+              motivation with a new array of connections for you to lean on. so
+              take a seat and get ready for a day of learning and connection.
             </p>
-
-           
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <span className="rounded-full bg-[#203746] px-4 py-2 text-xs font-bold text-white">
+            <a
+              href="https://www.businessneedsinc.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-[#203746] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#ffffff] hover:text-[#203746]"
+            >
               www.businessneedsinc.com
-            </span>
-            <span className="rounded-full bg-[#203746] px-4 py-2 text-xs font-bold text-white">
+            </a>
+
+            <a
+              href="https://www.pankajmital.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-[#203746] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#ffffff] hover:text-[#203746]"
+            >
               www.pankajmital.com
-            </span>
+            </a>
           </div>
         </div>
       </div>
@@ -181,9 +190,7 @@ function Speakers() {
                 />
               </div>
 
-              <h3 className="mt-6 text-xl md:text-2xl">
-                Leader Name
-              </h3>
+              <h3 className="mt-6 text-xl md:text-2xl">Leader Name</h3>
 
               <div className="mx-auto mt-4 inline-block bg-[#f4eadb] px-5 py-3 text-[9px] font-semibold uppercase text-[#203746] md:px-6 md:text-[10px]">
                 Job Title and Company
@@ -198,14 +205,15 @@ function Speakers() {
 
 function EventFlow() {
   return (
-    <section id="schedule" className="bg-[#f4eadb] px-5 py-16 md:px-10 md:py-20">
+    <section
+      id="schedule"
+      className="bg-[#f4eadb] px-5 py-16 md:px-10 md:py-20"
+    >
       <div className="mx-auto max-w-[1180px]">
         <div className="mb-14 flex items-start justify-between gap-5">
           <h2 className="text-[34px] font-black uppercase leading-none tracking-tight text-black md:text-[48px]">
             Event Flow
           </h2>
-
-         
         </div>
 
         <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-5 md:gap-x-10 md:gap-y-16">
@@ -237,15 +245,14 @@ function Community() {
     <section className="bg-[#203746] px-6 py-20 text-white">
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <h2 className="text-5xl leading-tight md:text-6xl">
-            Not just a
+          <h2 className="text-5xl leading-tight md:text-5xl">
+            Not just a Summit,
             <br />
-            Summit, a
+            A Community.
             <br />
-            Community.
           </h2>
 
-          <p className="mt-6 max-w-sm text-sm leading-7 text-white/90">
+          <p className="mt-6 max-w-sm text-md leading-7 text-white/90">
             CEOs, Authors, Leaders all in one room, all focused on growth. Join
             our summit to be a part of the community that cares about your
             learning and pushes you to become a better version of yourself.
@@ -272,9 +279,7 @@ function Community() {
 
       <div className="mt-24 text-center">
         <h3 className="text-4xl leading-tight md:text-5xl">
-          Learn More About our
-          <br />
-          Speakers
+          Learn More About our Speakers
         </h3>
 
         <div className="mt-5 flex justify-center gap-2">
@@ -287,40 +292,42 @@ function Community() {
   );
 }
 
-
-
 function Sponsors() {
-
- 
   const sponsors = [
     {
       src: "/images/sponsors/bni-logo.png",
       alt: "Business Needs Inc.",
+      url: "https://www.businessneedsinc.com",
       className: "max-h-[105px] md:max-h-[125px]",
     },
     {
       src: "/images/sponsors/our-brand-01.png",
       alt: "Riyu",
+      url: "https://riyuglobal.in/",
       className: "max-h-[105px] md:max-h-[125px]",
     },
     {
       src: "/images/sponsors/our-brand-03.png",
       alt: "Harshu",
+      url: "https://www.harshuglobal.com/",
       className: "max-h-[105px] md:max-h-[125px]",
     },
     {
       src: "/images/sponsors/our-brand-04.png",
       alt: "OnPoint Wares",
+      url: "https://www.onpointwares.com/",
       className: "max-h-[95px] md:max-h-[115px]",
     },
     {
       src: "/images/sponsors/alka_logo.png",
       alt: "Alka",
+      url: "https://www.alkatrust.com/",
       className: "max-h-[100px] md:max-h-[120px]",
     },
     {
       src: "/images/sponsors/our-brand-02.png",
-      alt: "RG Industries",
+      alt: "RR Industries",
+      url: "https://www.rrindustriesus.com/",
       className: "max-h-[105px] md:max-h-[125px]",
     },
   ];
@@ -375,14 +382,22 @@ function Sponsors() {
                 </>
               )}
 
-              <Image
-                src={sponsor.src}
-                alt={sponsor.alt}
-                width={360}
-                height={180}
-                className={`${sponsor.className} w-auto object-contain`}
-                style={{ width: "250px", height: "350px" }}
-              />
+              <a
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit ${sponsor.alt}`}
+                className="flex h-full w-full items-center justify-center transition hover:scale-105"
+              >
+                <Image
+                  src={sponsor.src}
+                  alt={sponsor.alt}
+                  width={360}
+                  height={180}
+                  className={`${sponsor.className} w-auto object-contain`}
+                  style={{ width: "250px", height: "auto" }}
+                />
+              </a>
             </div>
           ))}
         </div>
