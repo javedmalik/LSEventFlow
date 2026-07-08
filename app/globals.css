@@ -27,3 +27,20 @@ textarea,
 select {
   font-family: inherit;
 }
+
+@keyframes scheduleBlink {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(32, 177, 90, 0.7);
+  }
+
+  50% {
+    transform: scale(1.12);
+    box-shadow: 0 0 0 8px rgba(32, 177, 90, 0);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(32, 177, 90, 0);
+  }
+}

@@ -1,25 +1,10 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import SpeakerHighlightSlider from "@/components/SpeakerHighlightSlider";
+import { speakers, scheduleItems } from "@/content/summitData";
 
-const eventFlow = [
-  { time: "12:00", title: "Introductory Remarks", color: "navy" },
-  { time: "12:20", title: "Entrepreneurship a day in the Life", color: "gold" },
-  { time: "01:00", title: "Goal Setting", color: "navy" },
-  { time: "02:00", title: "Leading with Purpose", color: "gold" },
-  { time: "03:00", title: "Building High Performing Teams", color: "navy" },
-
-  { time: "12:00", title: "Lunch Break", color: "navy" },
-  { time: "12:20", title: "Why Failing is Important", color: "gold" },
-  { time: "01:00", title: "AI Transformation", color: "navy" },
-  { time: "02:00", title: "Decision Making/Building Culture", color: "gold" },
-  { time: "03:00", title: "Why your team doesn't speak up", color: "navy" },
-
-  { time: "12:00", title: "Breakout Session with Audiences", color: "navy" },
-  { time: "12:20", title: "Closing Remarks", color: "gold" },
-  { time: "01:00", title: "Networking and Cocktail Dinner", color: "navy" },
-];
-
-const speakers = [1, 2, 3, 4];
 
 const communityImages = [
   "/images/community-1.jpg",
@@ -177,23 +162,25 @@ function Speakers() {
           Meet our Panel of Speakers
         </h2>
 
-        <div className="mt-16 grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4">
-          {speakers.map((item) => (
-            <div key={item} className="text-center">
-              <div className="mx-auto h-36 w-36 overflow-hidden rounded-full border-4 border-[#d6a333] bg-[#dff4ff] md:h-44 md:w-44">
+        <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-4">
+          {speakers.map((speaker) => (
+            <div key={speaker.name} className="text-center">
+              <div className="mx-auto h-40 w-40 overflow-hidden rounded-full border-4 border-[#d6a333] bg-[#dff4ff] md:h-48 md:w-48">
                 <Image
-                  src="/images/speaker-placeholder.png"
-                  alt="Speaker"
-                  width={180}
-                  height={180}
+                  src={speaker.image}
+                  alt={speaker.name}
+                  width={220}
+                  height={220}
                   className="h-full w-full object-cover"
                 />
               </div>
 
-              <h3 className="mt-6 text-xl md:text-2xl">Leader Name</h3>
+              <h3 className="mt-6 text-2xl font-semibold md:text-2xl">
+                {speaker.name}
+              </h3>
 
-              <div className="mx-auto mt-4 inline-block bg-[#f4eadb] px-5 py-3 text-[9px] font-semibold uppercase text-[#203746] md:px-6 md:text-[10px]">
-                Job Title and Company
+              <div className="mx-auto mt-4 inline-block max-w-[460px] bg-[#f4eadb] px-5 py-3 text-[10px] font-semibold uppercase leading-4 text-[#203746] md:px-6">
+                {speaker.designation}
               </div>
             </div>
           ))}
@@ -204,36 +191,96 @@ function Speakers() {
 }
 
 function EventFlow() {
+  const [currentTime, setCurrentTime] = useState<Date | null>(null);
+
+  useEffect(() => {
+    const updateTime = () => {
+      setCurrentTime(new Date());
+    };
+
+    updateTime();
+
+    const interval = setInterval(updateTime, 30000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const isSessionLive = (item: {
+    start?: string;
+    end?: string;
+  }) => {
+    if (!currentTime || !item.start || !item.end) return false;
+
+    const startTime = new Date(item.start);
+    const endTime = new Date(item.end);
+
+    return currentTime >= startTime && currentTime <= endTime;
+  };
+
   return (
     <section
       id="schedule"
-      className="bg-[#f4eadb] px-5 py-16 md:px-10 md:py-20"
+      className="bg-[#f4eadb] px-3 py-10 text-[#17334b] md:px-10 md:py-24"
     >
-      <div className="mx-auto max-w-[1180px]">
-        <div className="mb-14 flex items-start justify-between gap-5">
-          <h2 className="text-[34px] font-black uppercase leading-none tracking-tight text-black md:text-[48px]">
-            Event Flow
-          </h2>
+      <div className="mx-auto max-w-[760px]">
+        <div className="mb-20 text-center">
+          <h1 className="text-[28px] font-black uppercase leading-none tracking-tight text-[#0b2944] md:text-[42px]">
+          EVENT FLOW
+          </h1>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-5 md:gap-x-10 md:gap-y-16">
-          {eventFlow.map((item, index) => (
-            <div key={`${item.title}-${index}`} className="text-center">
-              <p className="mb-5 text-[13px] font-black leading-none text-[#062b46] md:text-[14px]">
-                {item.time}
-              </p>
+        <div className="relative mx-auto w-full">
+          <div className="absolute bottom-2 left-1/2 top-2 w-[3px] -translate-x-1/2 rounded-full bg-[#d4a33b]" />
 
-              <div
-                className={`mx-auto mb-5 h-[46px] w-[46px] rounded-full md:h-[54px] md:w-[54px] ${
-                  item.color === "gold" ? "bg-[#d4a02f]" : "bg-[#062b46]"
-                }`}
-              />
+          <div className="relative z-10">
+            {scheduleItems.map((item, index) => {
+              const live = isSessionLive(item);
+              const isLeft = item.side === "left";
 
-              <h3 className="mx-auto max-w-[145px] text-[11px] font-black leading-[1.15] text-black md:max-w-[165px] md:text-[12px]">
-                {item.title}
-              </h3>
-            </div>
-          ))}
+              return (
+                <div
+                  key={`${item.title}-${index}`}
+                  className="grid min-h-[58px] grid-cols-[1fr_46px_1fr] items-center md:min-h-[60px]"
+                >
+                  <div className="flex justify-end pr-[18px]">
+                    {isLeft ? (
+                      <div className="relative flex min-h-[43px] w-[150px] items-center justify-center bg-[#17334b] px-3 py-2 text-center text-[11px] font-black italic leading-tight text-white after:absolute after:right-[-12px] after:top-1/2 after:-translate-y-1/2 after:border-y-[8px] after:border-l-[12px] after:border-y-transparent after:border-l-[#17334b] md:w-[275px] md:px-4 md:text-[15px] md:after:right-[-18px] md:after:border-y-[11px] md:after:border-l-[18px]">
+                        {item.title}
+                      </div>
+                    ) : (
+                      <p className="text-right text-[11px] italic leading-tight text-[#17334b] md:whitespace-nowrap md:text-[15px]">
+                        {item.time}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="flex items-center justify-center">
+                    <span
+                      className={`flex h-[28px] w-[28px] items-center justify-center rounded-full border-2 text-[13px] font-black leading-none md:h-[34px] md:w-[34px] md:border-[3px] md:text-[17px] ${
+                        live
+                          ? "animate-[scheduleBlink_1s_infinite] border-[#128a42] bg-[#20b15a] text-white"
+                          : "border-[#c89322] bg-[#d4a33b] text-[#17334b]"
+                      }`}
+                    >
+                      ▦
+                    </span>
+                  </div>
+
+                  <div className="flex justify-start pl-[18px]">
+                    {!isLeft ? (
+                      <div className="relative flex min-h-[43px] w-[150px] items-center justify-center bg-[#17334b] px-3 py-2 text-center text-[11px] font-black italic leading-tight text-white before:absolute before:left-[-12px] before:top-1/2 before:-translate-y-1/2 before:border-y-[8px] before:border-r-[12px] before:border-y-transparent before:border-r-[#17334b] md:w-[275px] md:px-4 md:text-[15px] md:before:left-[-18px] md:before:border-y-[11px] md:before:border-r-[18px]">
+                        {item.title}
+                      </div>
+                    ) : (
+                      <p className="text-left text-[11px] italic leading-tight text-[#17334b] md:whitespace-nowrap md:text-[15px]">
+                        {item.time}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
