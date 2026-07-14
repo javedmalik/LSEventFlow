@@ -162,7 +162,7 @@ function Speakers() {
           Meet our Panel of Speakers
         </h2>
 
-        <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-4">
+        <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3">
           {speakers.map((speaker) => (
             <div key={speaker.name} className="text-center">
               <div className="mx-auto h-40 w-40 overflow-hidden rounded-full border-4 border-[#d6a333] bg-[#dff4ff] md:h-48 md:w-48">
