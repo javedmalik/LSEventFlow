@@ -2,14 +2,14 @@
 
 export const speakers = [
  
-  {
-    name: "Mr. Sanjeev Gangal",
-    designation: "Former Regional Head- Enterprise Business Tech Mahindra Ltd.",
-    topic: "Topic Title Goes Here",
-    description:
-      "Join Mr. Sanjeev Gangal as he shares insights from his 40+ years of leadership experience. Having led growth, transformation, and high-performing teams across industries, he will discuss the key lessons, strategies, and experiences that shaped his successful career. Discover how effective leadership, strategic thinking, and continuous learning can drive long-term success.",
-    image: "/images/sg2.jpg",
-  },
+  // {
+  //   name: "Mr. Sanjeev Gangal",
+  //   designation: "Former Regional Head- Enterprise Business Tech Mahindra Ltd.",
+  //   topic: "Topic Title Goes Here",
+  //   description:
+  //     "Join Mr. Sanjeev Gangal as he shares insights from his 40+ years of leadership experience. Having led growth, transformation, and high-performing teams across industries, he will discuss the key lessons, strategies, and experiences that shaped his successful career. Discover how effective leadership, strategic thinking, and continuous learning can drive long-term success.",
+  //   image: "/images/sg2.jpg",
+  // },
   {
     name: "Mr. Mudit Gangal",
     designation: "Co-Founder of Rasanomics",
